@@ -1242,11 +1242,20 @@ contract SmartPool is Agt, WeightedSubmission {
     // 10000 = 100%
     uint public uncleRate = 500; // 5%
     // 10000 = 100%
-    uint public poolFees = 0;
+    uint public poolFees = 50; // 0.5%
 
 
     event IncomingFunds( address sender, uint amountInWei );
-    function() payable {
+    function() payable
+    {
+        if(msg.value == 0)
+        {
+            throw;
+        }
+    }
+    
+    function donate_Funds() payable
+    {
         IncomingFunds( msg.sender, msg.value );
     }
 
@@ -1291,7 +1300,7 @@ contract SmartPool is Agt, WeightedSubmission {
         return true;
     }
     
-    function getPoolETHBalance( ) constant returns(uint) {
+    function getPoolETCBalance( ) constant returns(uint) {
         // debug function for testrpc
         return this.balance;
     }
@@ -1308,6 +1317,3 @@ contract SmartPool is Agt, WeightedSubmission {
             
     }        
 }
-
-
-
