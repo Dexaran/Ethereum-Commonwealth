@@ -1252,10 +1252,6 @@ contract SmartPool is Agt, WeightedSubmission {
         {
             throw;
         }
-    }
-    
-    function donate_Funds() payable
-    {
         IncomingFunds( msg.sender, msg.value );
     }
 
@@ -1300,7 +1296,7 @@ contract SmartPool is Agt, WeightedSubmission {
         return true;
     }
     
-    function getPoolETCBalance( ) constant returns(uint) {
+    function getPoolBalance( ) constant returns(uint) {
         // debug function for testrpc
         return this.balance;
     }
